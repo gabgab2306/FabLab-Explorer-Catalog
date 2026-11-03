@@ -85,7 +85,8 @@ function Detail() {
               </div>
             </div>
 
-            <h2 className="eyebrow mt-10 text-muted-foreground">Dónde comprar / fuentes</h2>
+            <h2 className="eyebrow mt-10 text-muted-foreground">Fuentes y documentación</h2>
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Se distinguen las fichas de fabricante de los documentos de referencia y seguridad. Los enlaces informativos no sustituyen la evaluación de riesgos ni la supervisión de personal capacitado.</p>
             <div className="mt-3"><SourceLinks p={p} /></div>
           </div>
         </div>

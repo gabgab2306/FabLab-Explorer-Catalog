@@ -8,7 +8,7 @@ import {
 } from "@/lib/catalog";
 
 export const Route = createFileRoute("/editor")({
-  validateSearch: (s: Record<string, unknown>): { id?: string } => (typeof s.id === "string" ? { id: s.id } : {}),
+  validateSearch: (s: Record<string, unknown>): { id?: string } => (typeof s["id"] === "string" ? { id: s["id"] as string } : {}),
   head: () => ({
     meta: [
       { title: "Editor del catálogo · FabLab Explorer" },
@@ -120,7 +120,7 @@ function ProductForm({ product, onDeleted }: { product: Product; onDeleted: () =
       let value = rest.join(":").trim();
       const unverified = value.endsWith("?");
       if (unverified) value = value.slice(0, -1).trim();
-      return { label: label.trim(), value, verified: !unverified };
+      return { label: (label ?? "").trim(), value, verified: !unverified };
     }).filter((s) => s.label);
     const bad = p.sources.find((s) => s.url && !/^https?:\/\//.test(s.url));
     if (bad) { toast.error("Los enlaces deben empezar con http:// o https://"); return; }

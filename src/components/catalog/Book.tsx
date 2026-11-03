@@ -134,7 +134,7 @@ export function Book({ presentation = false }: { presentation?: boolean }) {
               single ? (presentation ? "max-w-3xl" : "max-w-xl") : visible.length === 1 ? "max-w-[30rem]" : "max-w-6xl"}`}
             aria-live="polite">
             {visible.length === 1 ? renderPage(visible[0], "single")
-              : <>{renderPage(visible[0], "left")}<div className="w-px bg-border" />{renderPage(visible[1], "right")}</>}
+              : <>{renderPage(visible[0]!, "left")}<div className="w-px bg-border" />{renderPage(visible[1]!, "right")}</>}
           </div>
           <button onClick={next} disabled={atEnd} aria-label="Página siguiente"
             className="btn btn-desk hidden size-11 shrink-0 rounded-full p-0 md:inline-flex">→</button>

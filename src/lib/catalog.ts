@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from "react";
 import img3018 from "@/assets/cnc-3018.jpg";
+import img3040 from "@/assets/cnc-3040.svg";
 import img4040 from "@/assets/cnc-4040.jpg";
 import imgLaser from "@/assets/laser-co2.jpg";
 import imgMills from "@/assets/endmills.jpg";
@@ -89,10 +90,10 @@ export const SEED_PRODUCTS: Product[] = [
     name: "Router CNC clase 3040",
     manufacturer: "Varios fabricantes (registro de referencia)",
     category: "routers",
-    images: [img4040],
+    images: [img3040],
     imageNote: ILLUSTRATIVE,
-    description: "Pórtico de mayor rigidez que la clase 3018. «3040» indica un área nominal de 300 × 400 mm. No confundir con la clase 4040 (400 × 400 mm).",
-    workArea: { x: 400, y: 300, z: null },
+    description: "Pórtico de formato rectangular, con un área nominal de 300 × 400 mm. No confundir con la clase 4040 (400 × 400 mm).",
+    workArea: { x: 300, y: 400, z: null },
     workAreaNote: "Área nominal de la clase 3040; confirmar recorrido Z con el fabricante.",
     dimensions: PENDING,
     powerW: null,

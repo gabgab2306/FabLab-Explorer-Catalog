@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CompararRouteImport } from './routes/comparar'
+import { Route as EditorRouteImport } from './routes/editor'
 import { Route as PresentacionRouteImport } from './routes/presentacion'
 import { Route as ProductosIndexRouteImport } from './routes/productos.index'
 import { Route as ProductosIdRouteImport } from './routes/productos.$id'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const CompararRoute = CompararRouteImport.update({
   id: '/comparar',
   path: '/comparar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorRoute = EditorRouteImport.update({
+  id: '/editor',
+  path: '/editor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PresentacionRoute = PresentacionRouteImport.update({
@@ -44,6 +50,7 @@ const ProductosIdRoute = ProductosIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/comparar': typeof CompararRoute
+  '/editor': typeof EditorRoute
   '/presentacion': typeof PresentacionRoute
   '/productos/$id': typeof ProductosIdRoute
   '/productos/': typeof ProductosIndexRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/comparar': typeof CompararRoute
+  '/editor': typeof EditorRoute
   '/presentacion': typeof PresentacionRoute
   '/productos/$id': typeof ProductosIdRoute
   '/productos': typeof ProductosIndexRoute
@@ -59,6 +67,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/comparar': typeof CompararRoute
+  '/editor': typeof EditorRoute
   '/presentacion': typeof PresentacionRoute
   '/productos/$id': typeof ProductosIdRoute
   '/productos/': typeof ProductosIndexRoute
@@ -66,13 +75,25 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/comparar' | '/presentacion' | '/productos/$id' | '/productos/'
+    | '/'
+    | '/comparar'
+    | '/editor'
+    | '/presentacion'
+    | '/productos/$id'
+    | '/productos/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/comparar' | '/presentacion' | '/productos/$id' | '/productos'
+  to:
+    | '/'
+    | '/comparar'
+    | '/editor'
+    | '/presentacion'
+    | '/productos/$id'
+    | '/productos'
   id:
     | '__root__'
     | '/'
     | '/comparar'
+    | '/editor'
     | '/presentacion'
     | '/productos/$id'
     | '/productos/'
@@ -81,6 +102,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CompararRoute: typeof CompararRoute
+  EditorRoute: typeof EditorRoute
   PresentacionRoute: typeof PresentacionRoute
   ProductosIdRoute: typeof ProductosIdRoute
   ProductosIndexRoute: typeof ProductosIndexRoute
@@ -100,6 +122,13 @@ declare module '@tanstack/react-router' {
       path: '/comparar'
       fullPath: '/comparar'
       preLoaderRoute: typeof CompararRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editor': {
+      id: '/editor'
+      path: '/editor'
+      fullPath: '/editor'
+      preLoaderRoute: typeof EditorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/presentacion': {
@@ -129,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CompararRoute: CompararRoute,
+  EditorRoute: EditorRoute,
   PresentacionRoute: PresentacionRoute,
   ProductosIdRoute: ProductosIdRoute,
   ProductosIndexRoute: ProductosIndexRoute,

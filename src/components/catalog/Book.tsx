@@ -23,8 +23,7 @@ function usePages(products: Product[]) {
       if (!items.length) pages.push({ kind: "empty", cat: c.id });
       items.forEach((p) => pages.push({ kind: "product", p }));
     });
-    if (pages.length % 2 === 1) pages.push({ kind: "back" });
-    else pages.push({ kind: "back" });
+    pages.push({ kind: "back" });
     return pages;
   }, [products]);
 }
@@ -133,7 +132,7 @@ export function Book({ presentation = false }: { presentation?: boolean }) {
             className="btn btn-desk hidden size-11 shrink-0 rounded-full p-0 md:inline-flex">←</button>
           <div key={visible.join("-")}
             className={`mx-auto flex w-full shadow-book ${dir === "next" ? "turn-next" : "turn-prev"} ${
-              single ? (presentation ? "max-w-3xl" : "max-w-xl") : visible.length === 1 ? "max-w-[34rem] md:ml-[50%] md:max-w-[calc(50%-1rem)] lg:ml-auto lg:mr-0" : "max-w-6xl"}`}
+              single ? (presentation ? "max-w-3xl" : "max-w-xl") : visible.length === 1 ? "max-w-[30rem]" : "max-w-6xl"}`}
             aria-live="polite">
             {visible.length === 1 ? renderPage(visible[0], "single")
               : <>{renderPage(visible[0], "left")}<div className="w-px bg-border" />{renderPage(visible[1], "right")}</>}
@@ -308,7 +307,6 @@ function PageContent({ pg, index, total, goSection, go, pages, presentation }: {
         <p className="text-[0.68rem] text-muted-foreground">Revisado: {fmtDate(p.lastChecked)}</p>
       </div>
       <Folio index={index} label={categoryName(p.category)} />
-      <span className="sr-only" onClick={() => go(index)} />
     </div>
   );
 }

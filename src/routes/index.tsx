@@ -1,24 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Book } from "@/components/catalog/Book";
+import { SiteHeader } from "@/components/catalog/shared";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "FabLab Explorer · Catálogo de equipos" },
+      { name: "description", content: "Catálogo interactivo de routers CNC, cortadoras láser CO2, CNC de escritorio y accesorios." },
+      { property: "og:title", content: "FabLab Explorer · Catálogo de equipos" },
+      { property: "og:description", content: "Catálogo interactivo de routers CNC, cortadoras láser CO2, CNC de escritorio y accesorios." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: () => (
+    <>
+      <SiteHeader />
+      <main><Book /></main>
+    </>
+  ),
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}

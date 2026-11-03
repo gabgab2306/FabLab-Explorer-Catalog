@@ -62,7 +62,7 @@ export function Book({ presentation = false }: { presentation?: boolean }) {
 
   const next = () => go(spreadStart === 0 && !single ? 1 : spreadStart + step);
   const prev = () => go(single ? page - 1 : spreadStart - 2 < 1 ? 0 : spreadStart - 2);
-  const atEnd = visible[visible.length - 1] >= pages.length - 1;
+  const atEnd = (visible[visible.length - 1] ?? 0) >= pages.length - 1;
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -83,7 +83,7 @@ export function Book({ presentation = false }: { presentation?: boolean }) {
   const renderPage = (i: number, side: "left" | "right" | "single") => (
     <div key={i} className={`relative flex min-w-0 flex-1 flex-col overflow-hidden bg-paper text-foreground ${
       single ? "" : "aspect-[3/4]"} ${side === "left" ? "spine-left" : side === "right" ? "spine-right" : ""}`}>
-      <PageContent pg={pages[i]} index={i} total={pages.length} goSection={(c) => go(sectionStart(c))} go={go}
+      <PageContent pg={pages[i]!} index={i} total={pages.length} goSection={(c) => go(sectionStart(c))} go={go}
         pages={pages} presentation={presentation} />
     </div>
   );
@@ -133,7 +133,7 @@ export function Book({ presentation = false }: { presentation?: boolean }) {
             className={`mx-auto flex w-full shadow-book ${dir === "next" ? "turn-next" : "turn-prev"} ${
               single ? (presentation ? "max-w-3xl" : "max-w-xl") : visible.length === 1 ? "max-w-[30rem]" : "max-w-6xl"}`}
             aria-live="polite">
-            {visible.length === 1 ? renderPage(visible[0], "single")
+            {visible.length === 1 ? renderPage(visible[0]!, "single")
               : <>{renderPage(visible[0]!, "left")}<div className="w-px bg-border" />{renderPage(visible[1]!, "right")}</>}
           </div>
           <button onClick={next} disabled={atEnd} aria-label="Página siguiente"

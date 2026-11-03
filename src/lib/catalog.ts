@@ -14,13 +14,14 @@ export const CATEGORIES: { id: CategoryId; name: string; short: string; blurb: s
   { id: "accesorios", name: "Accesorios", short: "Accesorios", blurb: "Fresas, sujeción, extracción y consumibles para el taller." },
 ];
 
-export type SourceType = "oficial" | "amazon" | "aliexpress" | "ebay" | "otro";
+export type SourceType = "oficial" | "amazon" | "aliexpress" | "ebay" | "otro" | "documentacion";
 export const SOURCE_LABELS: Record<SourceType, string> = {
   oficial: "Tienda oficial",
   amazon: "Amazon",
   aliexpress: "AliExpress",
   ebay: "eBay",
   otro: "Otro distribuidor",
+  documentacion: "Documentación y seguridad",
 };
 
 export interface Source { id: string; type: SourceType; label: string; url: string }
@@ -85,6 +86,7 @@ export const SEED_PRODUCTS: Product[] = [
     sources: [
       { id: "3018-official", type: "oficial", label: "Genmitsu: routers CNC y precio de referencia del 3018-PRO", url: "https://genmitsu.com/collections/milling-machines" },
       { id: "3018-manual", type: "oficial", label: "Manual del Genmitsu 3018-PRO", url: "https://genmitsu.s3.us-east-1.amazonaws.com/101-60-280PRO/3018-PRO_MANUAL_V1.4_EN%2BDE_2021.12.pdf" },
+      { id: "3018-safety", type: "documentacion", label: "HSE: prácticas seguras para routers CNC y centros de mecanizado", url: "https://www.hse.gov.uk/pubns/wis22.htm" },
     ],
     lastChecked: "2026-11-03",
     status: "verificado",
@@ -118,6 +120,7 @@ export const SEED_PRODUCTS: Product[] = [
     sources: [
       { id: "3040-guide", type: "otro", label: "Guía técnica: qué significa la clase CNC 3040", url: "https://cncrouterinfo.com/routers/3040-cnc-router/" },
       { id: "3040-vendor", type: "otro", label: "Catálogo de routers CNC para comparar configuraciones", url: "https://www.ato.com/cnc-router-machine?viewmode=list" },
+      { id: "3040-safety", type: "documentacion", label: "HSE: prácticas seguras para routers CNC y centros de mecanizado", url: "https://www.hse.gov.uk/pubns/wis22.htm" },
     ],
     lastChecked: "2026-11-03",
     status: "por-verificar",
@@ -154,6 +157,7 @@ export const SEED_PRODUCTS: Product[] = [
     sources: [
       { id: "4040-official", type: "oficial", label: "Ficha oficial Genmitsu 4040-PRO: precio, medidas y especificaciones", url: "https://genmitsu.com/products/4040-pro" },
       { id: "4040-resource", type: "oficial", label: "Centro de recursos y documentación del 4040-PRO", url: "https://docs.sainsmart.com/article/oq9mdxodpe-genmitsu-4040-pro-resource-page" },
+      { id: "4040-safety", type: "documentacion", label: "HSE: prácticas seguras para routers CNC y centros de mecanizado", url: "https://www.hse.gov.uk/pubns/wis22.htm" },
     ],
     lastChecked: "2026-11-03",
     status: "verificado",
@@ -188,6 +192,8 @@ export const SEED_PRODUCTS: Product[] = [
     shippingNote: "Precio final de referencia publicado por Monport al consultar la ficha; la página indicaba agotado. Confirmar disponibilidad, envío internacional, aranceles e ITBIS antes de presupuestar.",
     sources: [
       { id: "laser-monport", type: "oficial", label: "Ficha oficial Monport 40W Pro: precio, área y especificaciones", url: "https://monportlaser.com/products/monport-40w-lightburn-laser-engraver" },
+      { id: "laser-iso", type: "documentacion", label: "ISO 11553-1:2020: requisitos de seguridad para máquinas de procesamiento láser", url: "https://www.iso.org/standard/67658.html" },
+      { id: "laser-nist", type: "documentacion", label: "NIST: programa de seguridad para sistemas láser", url: "https://www.nist.gov/oshe/safety-programs/laser-safety-program" },
     ],
     lastChecked: "2026-11-03",
     status: "verificado",
@@ -222,6 +228,7 @@ export const SEED_PRODUCTS: Product[] = [
     shippingNote: "Precio de referencia del listado VEVOR; envío e impuestos se calculan aparte. Confirmar precio y disponibilidad en la tienda.",
     sources: [
       { id: "mills-vevor", type: "otro", label: "VEVOR: juego de 10 fresas CNC de 3,175 mm", url: "https://www.vevor.com/cnc-end-mill-c_10127/vevor-10pcs-3-175mm-cnc-engraving-router-bits-end-mill-2-flute-flat-nose-bits-p_010462119900" },
+      { id: "mills-safety", type: "documentacion", label: "HSE: prácticas seguras para routers CNC y centros de mecanizado", url: "https://www.hse.gov.uk/pubns/wis22.htm" },
     ],
     lastChecked: "2026-11-03",
     status: "verificado",

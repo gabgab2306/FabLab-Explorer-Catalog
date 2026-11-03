@@ -4,7 +4,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import {
   CATEGORIES, categoryName, fmtArea, fmtDate, useCatalog, type CategoryId, type Product,
 } from "@/lib/catalog";
-import { PriceBlock, ProductImage, RateSettings, StatusBadge } from "./shared";
+import { PriceBlock, ProductImage, StatusBadge } from "./shared";
 
 type Page =
   | { kind: "cover" }
@@ -104,7 +104,6 @@ export function Book({ presentation = false }: { presentation?: boolean }) {
           ))}
         </div>
         <div className="ml-auto flex items-center gap-2">
-          {!presentation && <RateSettings tone="desk" />}
           {presentation && <FullscreenButton />}
           <button className="btn btn-desk" aria-expanded={showIndex} onClick={() => setShowIndex((s) => !s)}>Índice de páginas</button>
         </div>
